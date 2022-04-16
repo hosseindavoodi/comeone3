@@ -1,0 +1,33 @@
+body {
+    background-color: #444;
+}
+.main.container {
+    background-color: #FFFFFF;
+    margin: 0 auto;
+    padding: 2em 2em 7em;
+    max-width: 990px;
+}
+
+.field {
+    margin: 10px;
+}
+
+.search {
+    float: right;
+}
+
+.close {
+    color: white;
+    z-index: 1000;
+    position:absolute;
+    cursor: pointer;
+    margin: 20px 0 0 20px;
+}
+
+.ui.button > .right.icon {
+    margin: 0em -2em 0em 1.2em !important;
+  }
+
+  .ui.items > .item .extra > [class*="right floated"] {
+    width: 100px !important;
+  }
