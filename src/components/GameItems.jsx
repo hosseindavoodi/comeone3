@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from "react";
 import { VideoModal } from './Comeon';
 
-export default function GameItems({data, dataCat}) {
+export default function GameItems({data, dataCat, searchValue}) {
 
 	const [shown, setShown] = useState(false)
   const [shownid, setShownid] = useState("")
@@ -20,7 +20,7 @@ export default function GameItems({data, dataCat}) {
                 {
                   
                 data.map(games => (
-                  games.categoryIds.includes(dataCat) ?
+                  games.categoryIds.includes(dataCat) && games.name.toLowerCase().includes(searchValue) ?
                   <div key={games.code} className="game item">
                   <div className="ui small image">
                       <img src={require('../' + games.icon)} alt="game-icon" />
