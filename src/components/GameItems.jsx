@@ -43,8 +43,6 @@ export default function GameItems({data, dataCat, searchValue}) {
               :
               ""
                 ))
-                
-                
               }
                {
                       shown ? <VideoModal str={shownid} setShown={setShown} /> : null

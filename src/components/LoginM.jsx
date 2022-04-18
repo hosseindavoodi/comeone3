@@ -1,8 +1,9 @@
-import React, { useReducer, useEffect, useRef } from 'react';
+import React, { useReducer, useState, useEffect, useRef } from 'react';
 
-import { verifyLogin } from './verifyLogin';
-import { loginReducer } from './Functions';
+import { loginReducer, userlogin } from './Functions';
+import { Loginverify } from './Loginverify';
 import Gamelist from './Gamelist';
+import Header from './Header';
 import './../stylesheets/semantic.css';
 import './../stylesheets/styles.css';
 
@@ -19,45 +20,45 @@ export default function LoginM() {
   const [state, dispatch] = useReducer(loginReducer, initialState);
   const { username, password, isLoggedIn, error, isFocused } = state;
   const usernameRef = useRef(null);
+  const [users, setUsers] = useState();
+
+  
 
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch({ type: verifyLogin });
+    dispatch({ type: Loginverify });
     try {
-      await verifyLogin({ username, password });
+      await Loginverify({ username, password, users});
       dispatch({ type: 'success' });
     } catch (error) {
       dispatch({ type: 'error' });
     }
   };
+  
 
   useEffect(() => {
+    userlogin(setUsers);
     if (isFocused) {
       usernameRef.current.focus();
     }
   }, [isFocused]);
 
+
+  
   return (
     <>
-   <div className="ui one column center aligned page grid">
-    <div className="column twelve wide">
-        <img src={require('../images/logo.svg')} alt="logo" />
-    </div>
-  </div>
+  <Header />
 
   <div className="main container">
- 
       
         {isLoggedIn ? (
-      
-          <Gamelist username={username} dispatch={dispatch} />
-      
+          <Gamelist username={username} users={users} dispatch={dispatch} />
         ) : (
 
           <div className="login">
           <div className="ui grid centered">
               <form onSubmit={handleSubmit}>
-              {error && <p className="error">{error} </p>}
+              
                   <div className="fields">
                       <div className="required field">
                           <div className="ui icon input">
@@ -92,9 +93,8 @@ export default function LoginM() {
                       <div className="field">
                         
                           <div className="ui icon input">
-                              <input type="submit" value="Login" />
-                              <i className="right chevron icon"></i>
-                              {error}
+                              <input type="submit" value="Login" className='loginbtn' name="Login" />
+                              {<p className="error">{error} </p>}
                           </div>
                           
                       </div>

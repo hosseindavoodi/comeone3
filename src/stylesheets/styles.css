@@ -31,3 +31,61 @@ body {
   .ui.items > .item .extra > [class*="right floated"] {
     width: 100px !important;
   }
+
+  .loginbtn {
+      width: 110px !important; 
+      text-align: right !important;
+      background: black !important;
+      color: white !important;
+      border: 0px !important
+  }
+
+  .CatergoryR {
+    width: 25%;
+      float: right;
+      position: relative;
+      display: inline-block;
+      font-size: 1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      vertical-align: top;
+  
+  }
+
+  .Gamelist {
+    width: 75%;
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    vertical-align: top;
+    
+}
+
+.searchbox {
+    width: 25%;
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    vertical-align: top;
+}
+.floatL {
+    float: left;
+}
+
+  @media  (max-width: 600px) {
+    .CatergoryR {
+        width: 100%;
+        margin: 10px 0 15px 0;
+    }
+    .Gamelist {
+        width: 100%;
+    }
+    .searchbox {
+        width:100%
+    }
+      
+  }

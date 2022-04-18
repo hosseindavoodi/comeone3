@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import GameItems from './GameItems';
+import { datafetchGames, datafetchCat} from './Functions';
 
-export default function Gamelist({username, dispatch}) {
+export default function Gamelist({username, dispatch, users}) {
 
   const [data, setDate] = useState([]);
   const [dataCat, setDateCat] = useState([]);
@@ -9,26 +10,11 @@ export default function Gamelist({username, dispatch}) {
   const [searchValue, setSearchValue] = useState("");
   
   
-  const datafetchGames = async () => {
-    const D1 = await fetch("http://localhost:3001/games");
-    const response = await D1.json();
-    setDate(response)
-  }
-
-
-  const datafetchCat = async () => {
-    const D1 = await fetch("http://localhost:3001/categories");
-    const response = await D1.json();
-    setDateCat(response)
-  }
-
-
   useEffect(()=>{
-    datafetchGames();
-    datafetchCat();
-
+    datafetchGames(setDate);
+    datafetchCat(setDateCat);
   },[])
-
+  
 
   return (
     <>
@@ -36,11 +22,11 @@ export default function Gamelist({username, dispatch}) {
 
         <div className="casino">
         <div className="ui grid centered">
-            <div className="twelve wide column">
+            <div className="twelve wide column floatL">
                 <div className="ui list">
 
                     <div className="player item">
-                        <img className="ui avatar image" src={require('../images/avatar/eric.jpg')} alt="avatar" />
+                    <img className="ui avatar image" src={require('../' + users.find(x => x.username === username).avatar)} alt="avatar" />
 
                         <div className="content">
                             <div className="header"><b className="name">{username}!</b></div>
@@ -53,7 +39,7 @@ export default function Gamelist({username, dispatch}) {
 					<i className="left chevron icon"></i>Log Out
 				</div>
             </div>
-            <div className="four wide column">
+            <div className="four wide searchbox">
                 <div className="search ui small icon input ">
                     <input type="text" placeholder="Search Game" onChange={(e)=>setSearchValue(e.target.value)}  />
                     <i className="search icon"></i>
@@ -61,16 +47,7 @@ export default function Gamelist({username, dispatch}) {
             </div>
         </div>
         <div className="ui grid">
-            <div className="twelve wide column">
-                <h3 className="ui dividing header">Games</h3>
-
-                <div className="ui relaxed divided game items links">
-
-                   <GameItems data={data} dataCat={FilteredItems} searchValue={searchValue} />
-
-                </div>
-            </div>
-            <div className="four wide column">
+        <div className="four wide CatergoryR">
                 <h3 className="ui dividing header">Categories</h3>
 
                 <div className="ui selection animated list category items">
@@ -82,9 +59,18 @@ export default function Gamelist({username, dispatch}) {
                         ))
                     }
                    
+                </div>
+            </div>
+            <div className="twelve wide Gamelist">
+                <h3 className="ui dividing header">Games</h3>
+
+                <div className="ui relaxed divided game items links">
+
+                   <GameItems data={data} dataCat={FilteredItems} searchValue={searchValue} />
 
                 </div>
             </div>
+            
         </div>
         </div>
     
