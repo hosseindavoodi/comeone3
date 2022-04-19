@@ -17,7 +17,6 @@ Tried to use most recent react technology - React Hook
 Also to get better responsivity on mobil added some css
 
 to run json-server
-<<<<<<< HEAD
 
 json-server --watch mock/mock-data.json --port 3001
 
@@ -34,20 +33,3 @@ password: dad
 username: stoffe
 password: rock
 
-=======
-
-json-server --watch mock/mock-data.json --port 3001
-
-
-
-to login:
-
-username: rebecka
-password: secret
-
-username: eric
-password: dad
-
-username: stoffe
-password: rock
->>>>>>> ef94883fb74381f12c168c7b196b68cd592bfdd0
