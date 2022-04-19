@@ -16,7 +16,7 @@ export default function Gamelist({username, dispatch, users}) {
     datafetchGames(setData);
     datafetchCat(setDataCat);
   },[])
-  
+  const usersfind = users.find(x => x.username === username);
 
   return (
     <>
@@ -30,11 +30,10 @@ export default function Gamelist({username, dispatch, users}) {
                     <div className="player item">
                         
                     {/* getting player data from parrent component */}
-                    <img className="ui avatar image" src={require('../' + users.find(x => x.username === username).avatar)} alt="avatar" />
-
+                    <img className="ui avatar image" src={require('../' + usersfind.avatar)} alt="avatar" />
                         <div className="content">
-                            <div className="header"><b className="name">{username}!</b></div>
-                            <div className="description event"></div>
+                            <div className="header"><b className="name">{usersfind.name}</b></div>
+                            <div className="description event">{usersfind.event}</div>
                         </div>
                     </div>
 
