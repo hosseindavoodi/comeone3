@@ -4,15 +4,17 @@ import { datafetchGames, datafetchCat} from './Functions';
 
 export default function Gamelist({username, dispatch, users}) {
 
-  const [data, setDate] = useState([]);
-  const [dataCat, setDateCat] = useState([]);
+  const [data, setData] = useState([]);
+  const [dataCat, setDataCat] = useState([]);
   const [FilteredItems, setFilteredItems] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   
   
+  
+  // fetching data from games and category api - fetch functions are in Functions.js 
   useEffect(()=>{
-    datafetchGames(setDate);
-    datafetchCat(setDateCat);
+    datafetchGames(setData);
+    datafetchCat(setDataCat);
   },[])
   
 
@@ -26,6 +28,8 @@ export default function Gamelist({username, dispatch, users}) {
                 <div className="ui list">
 
                     <div className="player item">
+                        
+                    {/* getting player data from parrent component */}
                     <img className="ui avatar image" src={require('../' + users.find(x => x.username === username).avatar)} alt="avatar" />
 
                         <div className="content">
@@ -66,6 +70,7 @@ export default function Gamelist({username, dispatch, users}) {
 
                 <div className="ui relaxed divided game items links">
 
+                    {/* game items component */}  
                    <GameItems data={data} dataCat={FilteredItems} searchValue={searchValue} />
 
                 </div>

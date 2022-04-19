@@ -1,4 +1,4 @@
-
+/* Login reducer function - imported in loginM */
 export function loginReducer(state, action) {
   switch (action.type) {
     case 'field': {
@@ -10,8 +10,7 @@ export function loginReducer(state, action) {
     case 'login': {
       return {
         ...state,
-        error: '',
-        isFocused: true
+        error: ''
       };
     }
     case 'success': {
@@ -26,8 +25,7 @@ export function loginReducer(state, action) {
         error: 'Incorrect username or password entered',
         isLoggedIn: false,
         username: '',
-        password: '',
-        isFocused: true
+        password: ''
       };
     }
     case 'logout': {
@@ -46,24 +44,25 @@ export function loginReducer(state, action) {
 
 const Api = 'http://localhost:3001/';
 
+/* fetching players data - imported in loginM */
 export const userlogin = async (setUsers) => {
   const Datalogin = await fetch(Api + "login");
   const response = await Datalogin.json();
   setUsers(response)
 }
 
-
-export const datafetchGames = async (setDate) => {
+/* fetching games data - imported in Gamelist */
+export const datafetchGames = async (setData) => {
   const D1 = await fetch(Api + "games");
   const response = await D1.json();
-  setDate(response)
+  setData(response)
 }
 
-
-export const datafetchCat = async (setDateCat) => {
+/* fetching category data - imported in Gamelist */
+export const datafetchCat = async (setDataCat) => {
   const D1 = await fetch(Api + "categories");
   const response = await D1.json();
-  setDateCat(response)
+  setDataCat(response)
 }
 
 

@@ -20,7 +20,10 @@ export default function GameItems({data, dataCat, searchValue}) {
                 {
                   
                 data.map(games => (
+
+                  /* filtering games based on category id and searchbox value */
                   games.categoryIds.includes(dataCat) && games.name.toLowerCase().includes(searchValue) ?
+
                   <div key={games.code} className="game item">
                   <div className="ui small image">
                       <img src={require('../' + games.icon)} alt="game-icon" />
@@ -44,7 +47,9 @@ export default function GameItems({data, dataCat, searchValue}) {
               ""
                 ))
               }
+               
                {
+                 /* Play game component */
                       shown ? <VideoModal str={shownid} setShown={setShown} /> : null
                 }
              

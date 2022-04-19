@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect, useRef } from 'react';
+import React, { useReducer, useState, useEffect} from 'react';
 
 import { loginReducer, userlogin } from './Functions';
 import { Loginverify } from './Loginverify';
@@ -18,12 +18,11 @@ const initialState = {
 
 export default function LoginM() {
   const [state, dispatch] = useReducer(loginReducer, initialState);
-  const { username, password, isLoggedIn, error, isFocused } = state;
-  const usernameRef = useRef(null);
+  const { username, password, isLoggedIn, error} = state;
   const [users, setUsers] = useState();
 
   
-
+// sending data to loginverify and get the response
   const handleSubmit = async e => {
     e.preventDefault();
     dispatch({ type: Loginverify });
@@ -35,13 +34,11 @@ export default function LoginM() {
     }
   };
   
-
+// fetching players data from login Api
   useEffect(() => {
     userlogin(setUsers);
-    if (isFocused) {
-      usernameRef.current.focus();
-    }
-  }, [isFocused]);
+   
+  }, []);
 
 
   
@@ -52,6 +49,7 @@ export default function LoginM() {
   <div className="main container">
       
         {isLoggedIn ? (
+          /* Gamelist component - loading after login success - passing players data to child component */
           <Gamelist username={username} users={users} dispatch={dispatch} />
         ) : (
 
@@ -62,7 +60,7 @@ export default function LoginM() {
                   <div className="fields">
                       <div className="required field">
                           <div className="ui icon input">
-                              <input type="text" name="username" placeholder="Username" ref={usernameRef} value={username} 
+                              <input type="text" name="username" placeholder="Username" value={username} 
                               autoFocus
                               onChange={e =>
                                 dispatch({

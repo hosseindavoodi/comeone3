@@ -1,5 +1,6 @@
 import React from "react";
 
+/* Show game component - play game based on received data from parent component */
 export const VideoModal = ({str, setShown}) => {
 
 	var e = {
