@@ -24,12 +24,6 @@ To start the Login instance locally, please run the command:
 npm start
 ```
 
-I added Some small changes on api, players data is added on json-server api
-Tried to use most recent react technology - React Hook
-Also to get better responsivity on mobil added some css
-
-
-
 
 
 to login:
