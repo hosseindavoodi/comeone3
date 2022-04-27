@@ -44,12 +44,6 @@ export function loginReducer(state, action) {
 
 const Api = 'http://localhost:3001/';
 
-/* fetching players data - imported in loginM */
-export const userlogin = async (setUsers) => {
-  const Datalogin = await fetch(Api + "login");
-  const response = await Datalogin.json();
-  setUsers(response)
-}
 
 /* fetching games data - imported in Gamelist */
 export const datafetchGames = async (setData) => {

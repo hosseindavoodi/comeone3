@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect} from 'react';
+import React, { useReducer, useState} from 'react';
 
 import { loginReducer} from './Functions';
 import Gamelist from './Gamelist';
@@ -36,7 +36,7 @@ export default function LoginM() {
         .then(data => {
       if (data.status === 'success'){
         dispatch({ type: 'success' });
-        console.log(data.player.name);
+        //console.log(data.player.name);
         setUsers(data.player.name)
         }
         else {
@@ -47,10 +47,6 @@ export default function LoginM() {
 
   };
   
-// fetching players data from login Api
-  useEffect(() => {
-  }, []);
-
 
   
   return (
