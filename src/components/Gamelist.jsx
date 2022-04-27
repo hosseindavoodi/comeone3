@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import GameItems from './GameItems';
 import { datafetchGames, datafetchCat} from './Functions';
 
-export default function Gamelist({username, dispatch, users}) {
+export default function Gamelist({user, dispatch, avatar, event}) {
 
   const [data, setData] = useState([]);
   const [dataCat, setDataCat] = useState([]);
@@ -16,7 +16,7 @@ export default function Gamelist({username, dispatch, users}) {
     datafetchGames(setData);
     datafetchCat(setDataCat);
   },[])
-  const usersfind = users.find(x => x.username === username);
+  //const usersfind = users.find(x => x.username === username);
 
   return (
     <>
@@ -30,10 +30,10 @@ export default function Gamelist({username, dispatch, users}) {
                     <div className="player item">
                         
                     {/* getting player data from parrent component */}
-                    <img className="ui avatar image" src={require('../' + usersfind.avatar)} alt="avatar" />
+                    <img className="ui avatar image" src={require("../images/avatar/rebecka.jpg")} alt="avatar" />
                         <div className="content">
-                            <div className="header"><b className="name">{usersfind.name}</b></div>
-                            <div className="description event">{usersfind.event}</div>
+                            <div className="header"><b className="name">{user}</b></div>
+                            <div className="description event"></div>
                         </div>
                     </div>
 

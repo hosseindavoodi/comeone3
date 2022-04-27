@@ -1,7 +1,6 @@
 import React, { useReducer, useState, useEffect} from 'react';
 
-import { loginReducer, userlogin } from './Functions';
-import { Loginverify } from './Loginverify';
+import { loginReducer} from './Functions';
 import Gamelist from './Gamelist';
 import Header from './Header';
 import './../stylesheets/semantic.css';
@@ -23,21 +22,33 @@ export default function LoginM() {
 
   
 // sending data to loginverify and get the response
-  const handleSubmit = async e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: Loginverify });
-    try {
-      await Loginverify({ username, password, users});
-      dispatch({ type: 'success' });
-    } catch (error) {
-      dispatch({ type: 'error' });
-    }
+    fetch('http://localhost:3001/login', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+        })
+        .then( response => response.json())
+        .then(data => {
+      if (data.status === 'success'){
+        dispatch({ type: 'success' });
+        console.log(data.player.name);
+        setUsers(data.player.name)
+        }
+        else {
+          console.log("fasdfas");
+          dispatch({ type: 'error' });
+        }
+       })
+
   };
   
 // fetching players data from login Api
   useEffect(() => {
-    userlogin(setUsers);
-   
   }, []);
 
 
@@ -50,7 +61,7 @@ export default function LoginM() {
       
         {isLoggedIn ? (
           /* Gamelist component - loading after login success - passing players data to child component */
-          <Gamelist username={username} users={users} dispatch={dispatch} />
+          <Gamelist user={users} dispatch={dispatch} />
         ) : (
 
           <div className="login">

@@ -15,7 +15,8 @@ npm install -g json-server
 to run json-server
 
 ```
-json-server --watch mock/mock-data.json --port 3001
+json-server --watch mock/mock-data.json --port 3001 --middlewares mock/mock-api.js
+
 ```
 
 To start the Login instance locally, please run the command:
