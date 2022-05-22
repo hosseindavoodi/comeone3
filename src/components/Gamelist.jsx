@@ -30,10 +30,10 @@ export default function Gamelist({user, dispatch, avatar, event}) {
                     <div className="player item">
                         
                     {/* getting player data from parrent component */}
-                    <img className="ui avatar image" src={require("../images/avatar/rebecka.jpg")} alt="avatar" />
+                    <img className="ui avatar image" src={require("../" + avatar)} alt="avatar" />
                         <div className="content">
                             <div className="header"><b className="name">{user}</b></div>
-                            <div className="description event"></div>
+                            <div className="description event">{event}</div>
                         </div>
                     </div>
 

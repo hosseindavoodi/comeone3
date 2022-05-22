@@ -16,7 +16,10 @@ export function loginReducer(state, action) {
     case 'success': {
       return {
         ...state,
-        isLoggedIn: true
+        isLoggedIn: true,
+        name: action.payload1,
+        avatar: action.payload2,
+        event: action.payload3
       };
     }
     case 'error': {

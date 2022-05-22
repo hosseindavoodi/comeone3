@@ -1,8 +1,8 @@
-import React, { useReducer, useState} from 'react';
+import React, { useReducer} from 'react';
 
 import { loginReducer} from './Functions';
 import Gamelist from './Gamelist';
-import Header from './Header';
+//import Header from './Header';
 import './../stylesheets/semantic.css';
 import './../stylesheets/styles.css';
 
@@ -17,8 +17,7 @@ const initialState = {
 
 export default function LoginM() {
   const [state, dispatch] = useReducer(loginReducer, initialState);
-  const { username, password, isLoggedIn, error} = state;
-  const [users, setUsers] = useState();
+  const { username, password, name, event, avatar, isLoggedIn, error} = state;
 
   
 // sending data to loginverify and get the response
@@ -35,12 +34,11 @@ export default function LoginM() {
         .then( response => response.json())
         .then(data => {
       if (data.status === 'success'){
-        dispatch({ type: 'success' });
-        //console.log(data.player.name);
-        setUsers(data.player.name)
+        const players = data.player;
+        dispatch({ type: 'success', payload1: players.name, payload2: players.avatar, payload3: players.event });
+        
         }
         else {
-          console.log("fasdfas");
           dispatch({ type: 'error' });
         }
        })
@@ -51,13 +49,13 @@ export default function LoginM() {
   
   return (
     <>
-  <Header />
+  {/* <Header /> */}
 
   <div className="main container">
       
         {isLoggedIn ? (
           /* Gamelist component - loading after login success - passing players data to child component */
-          <Gamelist user={users} dispatch={dispatch} />
+          <Gamelist user={name} dispatch={dispatch} avatar={avatar} event={event} />
         ) : (
 
           <div className="login">
