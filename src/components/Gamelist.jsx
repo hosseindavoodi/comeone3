@@ -8,12 +8,14 @@ export default function Gamelist({user, dispatch, avatar, event}) {
   const [dataCat, setDataCat] = useState([]);
   const [FilteredItems, setFilteredItems] = useState(0);
   const [searchValue, setSearchValue] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState (true);
   
   
   
   // fetching data from games and category api - fetch functions are in Functions.js 
   useEffect(()=>{
-    datafetchGames(setData);
+    datafetchGames(setData, setError, setLoading);
     datafetchCat(setDataCat);
   },[])
   //const usersfind = users.find(x => x.username === username);
@@ -70,7 +72,7 @@ export default function Gamelist({user, dispatch, avatar, event}) {
                 <div className="ui relaxed divided game items links">
 
                     {/* game items component */}  
-                   <GameItems data={data} dataCat={FilteredItems} searchValue={searchValue} />
+                   <GameItems data={data} dataCat={FilteredItems} searchValue={searchValue} error={error} loading={loading} />
 
                 </div>
             </div>

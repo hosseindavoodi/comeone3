@@ -49,10 +49,21 @@ const Api = 'http://localhost:3001/';
 
 
 /* fetching games data - imported in Gamelist */
-export const datafetchGames = async (setData) => {
-  const D1 = await fetch(Api + "games");
-  const response = await D1.json();
-  setData(response)
+export const datafetchGames = async (setData, setError, setLoading) => {
+  try {
+    const D1 = await fetch(Api + "games");
+      if (D1.status === 200) {
+      const response = await D1.json();
+      setData(response)
+      setLoading(false)
+        }
+        else {
+          throw "error"
+        }
+    }
+    catch (error) {
+      setError(true)
+    }
 }
 
 /* fetching category data - imported in Gamelist */
