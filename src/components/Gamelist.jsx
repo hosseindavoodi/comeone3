@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import GameItems from './GameItems';
 import { datafetchGames, datafetchCat} from './Functions';
 
-export default function Gamelist({user, dispatch, avatar, event}) {
+export default function Gamelist(props) {
 
   const [data, setData] = useState([]);
   const [dataCat, setDataCat] = useState([]);
@@ -32,15 +32,15 @@ export default function Gamelist({user, dispatch, avatar, event}) {
                     <div className="player item">
                         
                     {/* getting player data from parrent component */}
-                    <img className="ui avatar image" src={require("../" + avatar)} alt="avatar" />
+                    <img className="ui avatar image" src={require("../" + props.avatar)} alt="avatar" />
                         <div className="content">
-                            <div className="header"><b className="name">{user}</b></div>
-                            <div className="description event">{event}</div>
+                            <div className="header"><b className="name">{props.user}</b></div>
+                            <div className="description event">{props.event}</div>
                         </div>
                     </div>
 
                 </div>
-                <div className="logout ui left floated secondary button inverted" onClick={() => dispatch({ type: 'logout' })}>
+                <div className="logout ui left floated secondary button inverted" onClick={() => props.dispatch({ type: 'logout' })}>
 					<i className="left chevron icon"></i>Log Out
 				</div>
             </div>

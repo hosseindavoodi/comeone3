@@ -2,7 +2,7 @@ import React, { useReducer} from 'react';
 
 import { loginReducer} from './Functions';
 import Gamelist from './Gamelist';
-//import Header from './Header';
+import Header from './Header';
 import './../stylesheets/semantic.css';
 import './../stylesheets/styles.css';
 
@@ -49,7 +49,7 @@ export default function LoginM() {
   
   return (
     <>
-  {/* <Header /> */}
+  <Header />
 
   <div className="main container">
       

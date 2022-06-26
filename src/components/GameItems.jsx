@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from "react";
 import { VideoModal } from './Comeon';
 
-export default function GameItems({data, dataCat, searchValue, error, loading}) {
+export default function GameItems(props) {
 
 	const [shown, setShown] = useState(false)
   const [shownid, setShownid] = useState("")
@@ -18,14 +18,14 @@ export default function GameItems({data, dataCat, searchValue, error, loading}) 
     <>
                 
                 {
-                   error ? <p>Something is wrong, no game to show</p>
+                   props.error ? <p>Something is wrong, no game to show</p>
                    :
-                   loading ? <p>Games are loading ...</p>
+                   props.loading ? <p>Games are loading ...</p>
                    :
-                data.map(games => (
+                   props.data.map(games => (
 
                   /* filtering games based on category id and searchbox value */
-                  games.categoryIds.includes(dataCat) && games.name.toLowerCase().includes(searchValue) ?
+                  games.categoryIds.includes(props.dataCat) && games.name.toLowerCase().includes(props.searchValue) ?
 
                   <div key={games.code} className="game item">
                   <div className="ui small image">
